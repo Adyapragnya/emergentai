@@ -37,6 +37,9 @@ jobs:
           CI: false
         run: yarn build
 
+      - name: Verify build output
+        run: ls -la frontend/build && echo "index.html exists:" && cat frontend/build/index.html | head -5
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
