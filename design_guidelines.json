@@ -1,0 +1,183 @@
+{
+  "identity": {
+    "persona": "E1",
+    "mission": "Create a dual-personality interface that bridges the gap between executive polish (Sales) and field utility (Operations) for AS Moloobhoy, a historic marine services company.",
+    "core_principles": [
+      "Context is King: Sales gets breathing room; Ops gets density.",
+      "The Maritime Executive: Sales dashboard feels like a high-end ship's bridge - clean, white, teal, gold.",
+      "The Night Watch: Ops dashboard is a tactical HUD - dark navy, high-contrast, neon indicators.",
+      "Data as Art: Certificate expiry and vessel statuses should be visualized, not just listed."
+    ]
+  },
+  "typography": {
+    "imports": [
+      "https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap",
+      "https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap",
+      "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..800&display=swap"
+    ],
+    "families": {
+      "headings": "Syne, sans-serif",
+      "body_sales": "'Instrument Sans', sans-serif",
+      "data_ops": "'JetBrains Mono', monospace"
+    },
+    "usage": {
+      "sales": {
+        "headings": "font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: -0.02em;",
+        "body": "font-family: 'Instrument Sans', sans-serif;"
+      },
+      "ops": {
+        "headings": "font-family: 'Syne', sans-serif; font-weight: 600;",
+        "data": "font-family: 'JetBrains Mono', monospace; letter-spacing: -0.05em;"
+      }
+    }
+  },
+  "colors": {
+    "sales_theme": {
+      "background": "#FFFFFF",
+      "foreground": "#0F172A",
+      "primary": "#0B7C6E",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#F1F5F9",
+      "secondary_foreground": "#0F172A",
+      "warning": "#C47D0E",
+      "critical": "#C0392B",
+      "muted": "#F8FAFC",
+      "border": "#E2E8F0",
+      "card": "#FFFFFF",
+      "accent": "#F0FDFA"
+    },
+    "ops_theme": {
+      "background": "#0E1117",
+      "foreground": "#E2E8F0",
+      "primary": "#0FA390",
+      "primary_foreground": "#000000",
+      "secondary": "#1E293B",
+      "secondary_foreground": "#E2E8F0",
+      "warning": "#F59E0B",
+      "critical": "#EF4444",
+      "muted": "#1E293B",
+      "border": "#334155",
+      "card": "#161B22",
+      "accent": "#0F172A"
+    },
+    "palette_description": {
+      "sales": "Professional, clean, high-value. Deep Teal (#0B7C6E) anchors the brand, while Amber and Red serve as clear, non-alarming indicators.",
+      "ops": "Utilitarian, high-contrast, sunlight-readable. Dark Navy (#0E1117) minimizes glare. Neon Teal (#0FA390) confirms actions. Bright Amber and Red scream for attention."
+    }
+  },
+  "layout_strategy": {
+    "shared_shell": {
+      "component": "NavigationShell",
+      "structure": "Top bar with Logo (Left), Context Toggle (Center), User/Notifs (Right).",
+      "behavior": "Sticky top. Toggling switches the global theme context and the main router outlet."
+    },
+    "sales_dashboard": {
+      "type": "Desktop-First 3-Column",
+      "grid": "grid-cols-12 gap-6 p-8",
+      "columns": [
+        {
+          "name": "Sidebar",
+          "span": "col-span-2",
+          "content": "Port Filter, Key Stats",
+          "style": "Border-right, vertical rhythm"
+        },
+        {
+          "name": "Main Content",
+          "span": "col-span-7",
+          "content": "Tabs: Arriving, Overdue, Quotes, Leads. List of Vessel Cards.",
+          "style": "Clean, spacious list view"
+        },
+        {
+          "name": "Right Panel",
+          "span": "col-span-3",
+          "content": "Quick Actions, Calendar/Reminders",
+          "style": "Card-based, functional"
+        }
+      ]
+    },
+    "ops_dashboard": {
+      "type": "Mobile-First 2-Panel",
+      "grid": "grid-cols-1 lg:grid-cols-12 gap-4 p-4",
+      "columns": [
+        {
+          "name": "My Day",
+          "span": "col-span-12 lg:col-span-7",
+          "content": "Job List by ETA (Timeline view)",
+          "style": "High density, large touch targets for actions"
+        },
+        {
+          "name": "Vessel Feed",
+          "span": "col-span-12 lg:col-span-5",
+          "content": "Live Feed, Cert Expiry Monitor",
+          "style": "Data-dense, scrolling"
+        }
+      ]
+    }
+  },
+  "components": {
+    "vessel_card": {
+      "sales_variant": {
+        "style": "Clean white card, shadow-sm, hover:shadow-md transition-all. Border-l-4 border-l-primary.",
+        "content": "Vessel Name (Syne), Owner, Port, ETA, Service Tags (Pill shape), Cert Expiry (Thin bar).",
+        "actions": "Text buttons or subtle icons: Call, Quote, Assign."
+      },
+      "ops_variant": {
+        "style": "Dark card (bg-[#161B22]), 1px solid border (border-slate-700). High contrast text.",
+        "content": "Job Details (JetBrains Mono). Large status indicators.",
+        "actions": "Large block buttons (full width on mobile): Acknowledge, Start, Complete."
+      }
+    },
+    "cert_expiry_bar": {
+      "concept": "Visual progress bar indicating days remaining.",
+      "styles": {
+        "safe": "bg-emerald-500",
+        "warning": "bg-amber-500",
+        "critical": "bg-red-500"
+      }
+    },
+    "navigation_toggle": {
+      "style": "Pill-shaped toggle. Active state fills with Primary Color (Teal). Inactive state is transparent/ghost.",
+      "labels": ["SALES", "OPS"]
+    }
+  },
+  "visual_enhancers": {
+    "texture": "Use a subtle noise overlay on the Ops dashboard background (opacity 0.03) to reduce banding and add tactility.",
+    "glassmorphism": "Use sparingly. Only for the sticky navigation bar (backdrop-blur-md).",
+    "motion": {
+      "page_transition": "Crossfade (opacity) + subtle scale (0.98 -> 1).",
+      "list_entrance": "Staggered slide-in from bottom."
+    }
+  },
+  "assets": {
+    "image_urls": {
+      "hero_vessels": [
+        "https://images.unsplash.com/photo-1771156878997-5939a54ee10f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjB2ZXNzZWwlMjBjYXJnbyUyMHNoaXAlMjBwb3J0fGVufDB8fHx8MTc3Mjg1OTg0MHww&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1646047430369-3c174177aecb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwyfHxtYXJpbmUlMjB2ZXNzZWwlMjBjYXJnbyUyMHNoaXAlMjBwb3J0fGVufDB8fHx8MTc3Mjg1OTg0MHww&ixlib=rb-4.1.0&q=85"
+      ],
+      "engineers": [
+        "https://images.unsplash.com/photo-1729997308409-396ae04336bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBlbmdpbmVlciUyMHdvcmtpbmclMjBzaGlwJTIwZW5naW5lJTIwcm9vbXxlbnwwfHx8fDE3NzI4NTk4NDF8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1761141535640-c78744c4f369?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwyfHxtYXJpbmUlMjBlbmdpbmVlciUyMHdvcmtpbmclMjBzaGlwJTIwZW5naW5lJTIwcm9vbXxlbnwwfHx8fDE3NzI4NTk4NDF8MA&ixlib=rb-4.1.0&q=85"
+      ]
+    },
+    "data_constants": {
+      "indian_ports": ["Mumbai", "Kandla", "Kochi", "Tuticorin", "Chennai", "Vizag", "Mundra"]
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Setup Shadcn: Install the base components (card, button, tabs, badge, progress, sheet, sonner).",
+    "2. Theme Engine: Create a `ThemeContext` that wraps the app. It must toggle a 'dark' class on the HTML/Body tag when switching to Ops dashboard. IMPORTANT: Sales = Light Mode, Ops = Dark Mode.",
+    "3. Fonts: Import the fonts in `index.css` immediately.",
+    "4. Layouts: Create two distinct layout components: `SalesLayout` and `OpsLayout`. Do not try to mash them into one generic layout.",
+    "5. Mock Data: Generate realistic mock data for vessels, including: IMO number, Vessel Name (e.g., MV Ocean Pride), Port (from the list), ETA (dates), and randomly assigned certificate expiry dates.",
+    "6. Sidebar: The Port Filter sidebar in Sales should be sticky.",
+    "7. Notifications: Use `sonner` for the 'Flag Issue' or 'New Lead' actions.",
+    "8. Mobile Ops: Ensure the Ops dashboard uses large touch targets (min 44px) for actions like 'Acknowledge Job'."
+  ],
+  "UNIVERSAL_GUIDELINES": {
+    "design_philosophy": "Avoid generic 'dashboard' looks. Use the specific fonts and colors provided. Sales should feel airy; Ops should feel dense.",
+    "interaction": "Add hover states to all interactive elements. Use 'cursor-pointer' on cards that can be expanded.",
+    "accessibility": "Ensure contrast ratios are met, especially in the Dark/Ops theme. Use the vibrant Teal (#0FA390) for text against the dark navy background.",
+    "code_structure": "Keep Sales and Ops components in separate folders if their logic diverges significantly (`/components/sales` vs `/components/ops`).",
+    "testing": "Add `data-testid` to all buttons, inputs, and major containers."
+  }
+}
